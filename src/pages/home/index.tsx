@@ -1,13 +1,17 @@
+import { useRecoilValue } from "recoil"
 import Card from "../../components/Card"
 import PostItem from "../../components/PostItem"
-import { StyledContainer, StyledPostListContainer } from "./style"
+import { StyledContainer, StyledPostListContainer, StyledButton} from "./style"
+import { useNavigate } from "react-router-dom"
+import { postListState } from "../../stores"
 
 const Home = () => {
-  const posts = [
-    { id: 1, title: 'Html' },
-    { id: 2, title: 'Javascript' },
-    { id: 3, title: 'React' },
-  ]
+  const navigate = useNavigate();
+  const postList = useRecoilValue(postListState)
+
+  const handleClick = () => {
+    navigate(`/create/`)
+  }
 
   return (
     <main>
@@ -21,12 +25,14 @@ const Home = () => {
           </div>
         </Card>
         <StyledPostListContainer>
-          {posts.map(({id, title}) => (
-            <PostItem id={id} title={title} />
+          {postList.map(({id, title, body}) => (
+            <PostItem key={id} id={id} title={title}/>
           ))}
         </StyledPostListContainer>
+        <StyledButton onClick={handleClick}>
+          +
+        </StyledButton>
       </StyledContainer>
-      
     </main>
   )
 }

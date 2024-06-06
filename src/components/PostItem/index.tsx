@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom"
-import { StyledPostItem } from "./style"
+import { StyledPostItem, StyledContainer} from "./style"
 
 type PostItemProps = {
-  id: number
+  id: string
   title: string
 }
 
@@ -14,9 +14,12 @@ const PostItem = ({ id, title }: PostItemProps) => {
   }
 
   return (
+    <StyledContainer>
     <StyledPostItem onClick={handleClick}>
       {title}
     </StyledPostItem>
+
+    </StyledContainer>
   )
 }
 

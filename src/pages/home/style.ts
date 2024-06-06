@@ -11,4 +11,23 @@ const StyledPostListContainer = styled.div`
   margin: 15px 0px 15px 0px;
 `
 
-export { StyledContainer, StyledPostListContainer }
+const StyledButton = styled.button`
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  width: 46px;
+  height: 46px;
+  border: none;
+  border-radius: 50px;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+  margin-top: 20px;
+  font-size: 30px;
+  &:hover {
+    background-color: #45a049;
+    transform: scale(1.07);
+  }
+`
+
+export { StyledContainer, StyledPostListContainer, StyledButton}
