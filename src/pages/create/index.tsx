@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
-import { StyledContainer, StyledTextArea, StyledTextField, StyledButton } from "./style";
+import { StyledContainer, StyledTextArea } from "./style";
 import { useSetRecoilState, useRecoilValue } from "recoil";
 import { postListState } from "../../stores";
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate, useParams } from "react-router-dom";
+import Button from "../../components/Button";
+import InputField from "../../components/InputField";
 
 const CreateOrUpdate = () => {
     const { id } = useParams();
@@ -53,7 +55,7 @@ const CreateOrUpdate = () => {
         <StyledContainer>
             <div>
                 <h3>{id ? "밥 바꾸기" : "뇌에게 밥 주기"}</h3>
-                <StyledTextField 
+                <InputField width={300}
                     type="text" 
                     placeholder="제목" 
                     value={title} 
@@ -65,9 +67,9 @@ const CreateOrUpdate = () => {
                     onChange={(event) => setBody(event.target.value)}
                 />
             </div>
-            <StyledButton onClick={onClick}>
+            <Button onClick={onClick}>
                 {id ? "수정하기" : "추가하기"}
-            </StyledButton>
+            </Button>
         </StyledContainer>
     );
 }

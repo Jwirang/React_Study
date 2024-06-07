@@ -16,6 +16,7 @@ function App() {
         <Route path='/Update/:id' element={<CreateOrUpdate />} />
       </Route>
       <Route path='/login' element={<Login />} />
+      <Route path='/join' element={<Login />} />
     </Routes>
   );
 }

@@ -12,30 +12,18 @@ const StyledContainer = styled.div`
 const StyledImage = styled.img`
     width: 350px;
     height: auto;
-    margin-bottom: 20px;
-`;
+`
 
-const InputField = styled.input`
-    width: 300px;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-`;
+const StyledForm = styled.form`
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px 0px 16px 0px;
+`
 
-const Button = styled.button`
-    width: 300px;
-    padding: 10px;
-    margin: 20px 0;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+const Stylea = styled.a `
+    font-size: 12px;
+    padding-top: 10px;
+`
 
-    &:hover {
-        background-color: #0056b3;
-    }
-`;
-
-export {StyledContainer, StyledImage, InputField, Button}
+export {StyledContainer, StyledImage, StyledForm, Stylea}
