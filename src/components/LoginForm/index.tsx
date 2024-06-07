@@ -2,12 +2,10 @@ import { useState } from "react";
 import Button from "../Button";
 import InputField from "../InputField";
 import { Stylea, StyledForm } from "./style";
-import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const navigate = useNavigate();
     const Login = () => {
       if (username === '' || password === '') {
         alert('아이디와 비밀번호를 입력해 주세요');
