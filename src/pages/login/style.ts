@@ -14,16 +14,4 @@ const StyledImage = styled.img`
     height: auto;
 `
 
-const StyledForm = styled.form`
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    padding: 16px 0px 16px 0px;
-`
-
-const Stylea = styled.a `
-    font-size: 12px;
-    padding-top: 10px;
-`
-
-export {StyledContainer, StyledImage, StyledForm, Stylea}
+export {StyledContainer, StyledImage}
