@@ -4,7 +4,7 @@ const StyledButton = styled.button<{$width?: Number}>`
     ${props => props.$width && `width: ${props.$width}px;`}
     padding: 12px;
     //margin: 20px 0;
-    background-color: #007BFF;
+    background-color: #5DADE2;
     color: white;
     border: none;
     border-radius: 6px;
@@ -13,7 +13,7 @@ const StyledButton = styled.button<{$width?: Number}>`
     transition: background-color 0.3s;
 
     &:hover {
-        background-color: #0056b3;
+        background-color: #3498DB;
 }
 `
 

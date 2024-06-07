@@ -19,13 +19,13 @@ const StyledButton = styled.button`
   height: 46px;
   border: none;
   border-radius: 50px;
-  background-color: #007BFF;
+  background-color: #5DADE2;
   color: white;
   cursor: pointer;
   margin-top: 20px;
   font-size: 30px;
   &:hover {
-    background-color: #0056b3;
+    background-color: #3498DB;
     transform: scale(1.07);
   }
 `

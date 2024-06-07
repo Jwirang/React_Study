@@ -10,7 +10,7 @@ const StyledInputField = styled.input<{$width?:Number}>`
     transition: border-color 0.3s;
 
     &:focus {
-        border-color: #007BFF;
+        border-color: #5DADE2;
         outline: none;
     }
 `

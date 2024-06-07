@@ -16,7 +16,7 @@ const StyledTextArea = styled.textarea`
   height: 200px;
   resize: none;
   &:focus {
-    border-color: #007BFF;
+    border-color: #5DADE2;
     outline: none;
   }
 `
