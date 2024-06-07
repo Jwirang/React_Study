@@ -11,8 +11,12 @@ const Post = () => {
   const [mypostList, setMyPostList] = useRecoilState(postListState);
   const index = mypostList.findIndex((listItem) => listItem === post);
 
+  if (!post) {
+    return <div>존재하지 않는 게시물 번호입니다.</div>
+  }
+
   const DeletePost = () => {
-    const confirmed = window.confirm("정말 삭제하시겠습니까?");
+    const confirmed = window.confirm(`${post.title}글을 정말 삭제하시겠습니까?`);
     if (confirmed) {
       const newList = removeItemAtIndex(mypostList, index);
       setMyPostList(newList);
@@ -20,10 +24,6 @@ const Post = () => {
       navigate('/');
     }
   } 
-
-  if (!post) {
-    return <div>존재하지 않는 게시물 번호입니다.</div>
-  }
 
   return (
     <StyledContainer>
@@ -33,7 +33,9 @@ const Post = () => {
       <div>
         {post?.body}
       </div>
-      <StyledButton>수정하기</StyledButton>
+      <StyledButton onClick={() => {
+        navigate(`/Update/${post.id}`);
+      }}>수정하기</StyledButton>
       <StyledButton onClick={() => {
         DeletePost();
       }}>삭제하기</StyledButton>
