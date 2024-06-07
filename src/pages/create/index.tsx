@@ -52,7 +52,7 @@ const CreateOrUpdate = () => {
     return (
         <StyledContainer>
             <div>
-                <h3>{id ? "포스트 수정" : "뇌에게 밥 주기"}</h3>
+                <h3>{id ? "밥 바꾸기" : "뇌에게 밥 주기"}</h3>
                 <StyledTextField 
                     type="text" 
                     placeholder="제목" 
