@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { StyledContainer, StyledTextArea } from "./style";
 import { useSetRecoilState, useRecoilValue } from "recoil";
-import { postListState } from "../../stores";
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate, useParams } from "react-router-dom";
+import { StyledContainer, FormContainer, StyledTextArea, FormTitle, PlaceholderImage, Instructions } from "./style";
+import { postListState } from "../../stores";
 import Button from "../../components/Button";
 import InputField from "../../components/InputField";
 
@@ -53,9 +53,14 @@ const CreateOrUpdate = () => {
 
     return (
         <StyledContainer>
-            <div>
-                <h3>{id ? "밥 바꾸기" : "뇌에게 밥 주기"}</h3>
-                <InputField width={300}
+            <FormContainer>
+                <PlaceholderImage src="https://via.placeholder.com/100" alt="Placeholder" />
+                <FormTitle>{id ? "게시물 수정하기" : "새 게시물 작성하기"}</FormTitle>
+                <Instructions>
+                    {id ? "수정하려는 게시물의 제목과 내용을 입력하세요." : "새 게시물의 제목과 내용을 입력하세요."}
+                </Instructions>
+                <InputField
+                    width={300}
                     type="text" 
                     placeholder="제목" 
                     value={title} 
@@ -66,10 +71,10 @@ const CreateOrUpdate = () => {
                     value={body} 
                     onChange={(event) => setBody(event.target.value)}
                 />
-            </div>
-            <Button onClick={onClick}>
-                {id ? "수정하기" : "추가하기"}
-            </Button>
+                <Button onClick={onClick}>
+                    {id ? "수정하기" : "추가하기"}
+                </Button>
+            </FormContainer>
         </StyledContainer>
     );
 }

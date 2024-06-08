@@ -13,7 +13,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/post/:id' element={<Post />} />
         <Route path='/create' element={<CreateOrUpdate />} />
-        <Route path='/Update/:id' element={<CreateOrUpdate />} />
+        <Route path='/update/:id' element={<CreateOrUpdate />} />
       </Route>
       <Route path='/login' element={<Login />} />
       <Route path='/join' element={<Login />} />
