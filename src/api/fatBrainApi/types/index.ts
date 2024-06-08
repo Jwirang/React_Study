@@ -23,3 +23,23 @@ export type TokenRespons = {
     expiresIn: number
     refreshExpiresIn: number
 }
+
+export type FeedResponse = {
+    id: number
+    title: string
+    content: string
+    feeder: UserRespons
+    createdAt: Date
+    updatedAt: Date
+}
+
+export type Page<T> = {
+    totalPages: number
+    totalElements: number
+    first: boolean
+    last: boolean
+    size: number
+    content: T[]
+    number: number
+    empty: boolean
+}

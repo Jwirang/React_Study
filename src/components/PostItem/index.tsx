@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom"
 import { StyledPostItem, StyledContainer} from "./style"
 
 type PostItemProps = {
-  id: string
+  id: number
   title: string
 }
 
