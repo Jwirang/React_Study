@@ -1,4 +1,5 @@
 import { atom } from "recoil";
+import { UserRespons } from "../api/fatBrainApi/types";
 
 const postListState = atom({
     key: 'postListState',
@@ -9,4 +10,9 @@ const postListState = atom({
     ],
 })
 
-export { postListState }
+const meState = atom<UserRespons>({
+    key: 'meState',
+    default: undefined,
+})
+
+export { postListState, meState }

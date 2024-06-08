@@ -2,7 +2,7 @@ import { useState } from "react";
 import Button from "../Button";
 import InputField from "../InputField";
 import { StyledForm } from "./style";
-import { createUser } from "../../api/fatBrainApi";
+import { fetchCreateUser } from "../../api/fatBrainApi";
 
 const JoinForm = () => {
     const [joinFrom, setJoinFrom] = useState({
@@ -31,7 +31,7 @@ const JoinForm = () => {
       } else {
         const { username, password, nickname } = joinFrom
 
-        const respons = await createUser({username, password, nickname})
+        const respons = await fetchCreateUser({username, password, nickname})
         alert(respons);
       }
     }

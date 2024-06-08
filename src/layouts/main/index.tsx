@@ -1,8 +1,11 @@
 import { Outlet } from "react-router-dom"
 import { StyledH1, StyledLink, StyledHeaderContainer } from "./style"
+import { useRecoilValue } from "recoil"
+import { meState } from "../../stores"
 
 const Main = () => {
-  const nickname = '쥐랑'
+  const me = useRecoilValue(meState)
+  const nickname = me?.nickname
 
   return (
     <>
