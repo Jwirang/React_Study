@@ -15,8 +15,10 @@ const StyledPostItem = styled.div`
   cursor: pointer;
   width: 90%;
   &:hover {
-    background-color: #e0e0e0;
-    transform: scale(1.05);
+    // background-color: #e0e0e0;
+    // transform: scale(1.05);
+    transform: translateY(-5px); /* 살짝 떠오르는 효과 추가 */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* 그림자 강도 증가 */
   }
 `
 
