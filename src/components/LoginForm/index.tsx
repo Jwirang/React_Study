@@ -1,15 +1,13 @@
+import Cookies from "js-cookie";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { fetchIssueToken } from "../../api/fatBrainApi";
+import fatBrainClient from "../../api/fatBrainApi/client";
 import Button from "../Button";
 import InputField from "../InputField";
 import { Stylea, StyledForm } from "./style";
-import { fetchIssueToken, fetchMe } from "../../api/fatBrainApi";
-import fatBrainClient from "../../api/fatBrainApi/client";
-import { useRecoilState } from "recoil";
-import { meState } from "../../stores";
-import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
-    const [me, setMe] = useRecoilState(meState)
     const navigate = useNavigate()
     const [loginForm, setLoginForm] = useState({
         username: '',
@@ -30,15 +28,16 @@ const LoginForm = () => {
         alert('아이디와 비밀번호를 입력해 주세요');
       } else {
         const { username, password } = loginForm
-        const response = await fetchIssueToken({
+        const { tokenType, accessToken, refreshToken, refreshExpiresIn} = await fetchIssueToken({
             grantType: 'password',
             username,
             password
         })
-        fatBrainClient.defaults.headers['Authorization'] = `${response.tokenType} ${response.accessToken}`
-
-        const myInfo = await fetchMe()
-        setMe(myInfo)
+        Cookies.set('tid', refreshToken, {
+            path: '',
+            expires: refreshExpiresIn,
+        })
+        fatBrainClient.defaults.headers['Authorization'] = `${tokenType} ${accessToken}`
         navigate('/')
       }
     }

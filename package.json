@@ -11,8 +11,10 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "axios": "^1.7.2",
+    "js-cookie": "^3.0.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-query": "^3.39.3",
     "react-router-dom": "^6.23.1",
     "react-scripts": "5.0.1",
     "recoil": "^0.7.7",
@@ -48,6 +50,7 @@
   "devDependencies": {
     "@types/google-one-tap": "^1.2.6",
     "@types/google.accounts": "^0.0.14",
+    "@types/js-cookie": "^3.0.6",
     "@types/uuid": "^9.0.8"
   }
 }

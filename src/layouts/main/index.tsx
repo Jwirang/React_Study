@@ -1,12 +1,19 @@
-import { Link, Outlet } from "react-router-dom"
-import { StyledH1, StyledLink, StyledHeaderContainer, LogoContainer, LogoImage } from "./style"
-import { useRecoilValue } from "recoil"
-import { meState } from "../../stores"
+import { useQuery } from "react-query";
+import { Link, Outlet, useNavigate } from "react-router-dom";
+import { fetchMe } from "../../api/fatBrainApi";
 import fatbrain from '../../assets/fatbrainImage.png';
+import { LogoContainer, LogoImage, StyledH1, StyledHeaderContainer, StyledLink } from "./style";
 
 const Main = () => {
-  const me = useRecoilValue(meState)
-  const nickname = me?.nickname
+  const navigate = useNavigate();
+  const { data: me, isError} = useQuery({
+    queryKey: ['me'],
+    queryFn: fetchMe,
+  })
+
+  if (isError) {
+    navigate('/login')
+  }
 
   return (
     <>
@@ -19,7 +26,7 @@ const Main = () => {
         </LogoContainer>
           <StyledH1>
             <StyledLink to="/">
-              {nickname}님의 지식 냠냠 목록🍚
+              {me?.nickname ?? me?.username}님의 지식 냠냠 목록🍚
             </StyledLink>
           </StyledH1>
         </StyledHeaderContainer>
