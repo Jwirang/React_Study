@@ -2,7 +2,7 @@ import { useState } from "react";
 import Button from "../Button";
 import InputField from "../InputField";
 import { Stylea, StyledForm } from "./style";
-import { fatchIssueToken, fatchMe } from "../../api/fatBrainApi";
+import { fetchIssueToken, fetchMe } from "../../api/fatBrainApi";
 import fatBrainClient from "../../api/fatBrainApi/client";
 import { useRecoilState } from "recoil";
 import { meState } from "../../stores";
@@ -30,14 +30,14 @@ const LoginForm = () => {
         alert('아이디와 비밀번호를 입력해 주세요');
       } else {
         const { username, password } = loginForm
-        const response = await fatchIssueToken({
-            grantTyp: 'password',
+        const response = await fetchIssueToken({
+            grantType: 'password',
             username,
             password
         })
         fatBrainClient.defaults.headers['Authorization'] = `${response.tokenType} ${response.accessToken}`
 
-        const myInfo = await fatchMe()
+        const myInfo = await fetchMe()
         setMe(myInfo)
         navigate('/')
       }

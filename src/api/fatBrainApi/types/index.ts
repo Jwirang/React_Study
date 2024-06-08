@@ -11,7 +11,7 @@ export type UserRespons = {
 }
 
 export type IssueTokenRequest = {
-    grantTyp: 'password' | 'refresh_token'
+    grantType: 'password' | 'refresh_token'
     username: string
     password: string
 }
