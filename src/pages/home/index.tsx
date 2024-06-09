@@ -1,16 +1,24 @@
-import { useRecoilValue } from "recoil";
-import { useNavigate } from "react-router-dom";
-import { postListState } from "../../stores";
-import { StyledContainer, StyledPostListContainer, StyledButton, Card, CardTitle, CardBody, HoverContent, HoverImage, HoverText, StyleP } from "./style";
-import PostItem from "../../components/PostItem";
-import icon from '../../assets/icon.png';
+import { useState } from "react";
 import { useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
 import { fetchFeeds, fetchMe } from "../../api/fatBrainApi";
+import icon from '../../assets/icon.png';
+import Card from "../../components/Card";
+import PostItem from "../../components/PostItem";
+import { CardBody, CardTitle, HoverImage, HoverText, StyleP, StyledButton, StyledContainer, StyledPostListContainer } from "./style";
 
 
 const Home = () => {
   const navigate = useNavigate();
-  const postList = useRecoilValue(postListState);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
 
   const handleClick = () => {
     navigate(`/create/`);
@@ -35,14 +43,19 @@ const Home = () => {
   return (
     <main>
       <StyledContainer>
-        <Card>
-          <CardTitle>여기는</CardTitle>
-          <CardBody> {me?.nickname ?? me?.username}님이 공부한 내용을 기록하는 곳이예요.🫡</CardBody>
-          <HoverContent className="hover-content">
+        <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+          <Card>
+            {!isHovered ? (
+            <>
+            <CardTitle>여기는</CardTitle>
+            <CardBody> {me?.nickname ?? me?.username}님이 공부한 내용을 기록하는 곳이예요.🫡</CardBody>
+            </> ) : (
+             <>
             <HoverImage src={icon} alt="예시 이미지" />
             <HoverText>개의 글을 작성하셨네요!</HoverText>
-          </HoverContent>
-        </Card>
+            </> )}
+          </Card>
+        </div>
         <StyledPostListContainer>
         {
           feedList?.content.length ? (

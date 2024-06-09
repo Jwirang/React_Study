@@ -67,6 +67,7 @@ const Card = styled.div`
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+    display: block;
   }
 `;
 
@@ -82,38 +83,9 @@ const CardBody = styled.div`
   line-height: 1.6;
 `;
 
-const HoverContent = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 110%;
-  transform: translateY(-50%) translateX(10px);
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-  background-color: #5DADE2;
-  color: white;
-  padding: 10px;
-  border-radius: 5px;
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-
-  @media (max-width: 768px) {
-    left: 100%;
-    transform: translateY(-50%) translateX(10px);
-  }
-
-  @media (max-width: 480px) {
-    left: 50%;
-    top: 100%;
-    transform: translate(-50%, 10px);
-  }
-`;
-
 const HoverImage = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
 `;
 
 const HoverText = styled.div`
@@ -124,4 +96,4 @@ const StyleP = styled.p`
   text-align: center;
 `
 
-export { StyledContainer, StyledPostListContainer, StyledButton, StyledPost, Card, CardTitle, CardBody, HoverContent, HoverImage, HoverText, StyleP };
+export { StyledContainer, StyledPostListContainer, StyledButton, StyledPost, Card, CardTitle, CardBody, HoverImage, HoverText, StyleP };
