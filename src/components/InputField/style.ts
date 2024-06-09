@@ -14,5 +14,10 @@ const StyledInputField = styled.input<{$width?:Number}>`
         outline: none;
     }
 `
+const StyleError = styled.p` 
+    font-size: 10px;
+    color: red;
+    align-self: start;
+`
 
-export { StyledInputField }
+export { StyledInputField, StyleError }

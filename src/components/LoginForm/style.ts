@@ -13,7 +13,7 @@ const StyledForm = styled.form`
 const Stylea = styled(Link) `
     font-size: 12px;
 `
-const StyleText = styled.text`
+const StyleText = styled.p`
     font-size: 10px;
     color: red;
 `

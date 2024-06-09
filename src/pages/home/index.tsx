@@ -25,7 +25,7 @@ const Home = () => {
   // }
 
   const page = 0
-  const size = 50
+  const size = 5
 
   const { data: feedList } = useQuery({
     queryKey: ['feedList', {page, size}],

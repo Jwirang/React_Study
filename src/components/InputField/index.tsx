@@ -1,14 +1,17 @@
 import { InputHTMLAttributes } from "react"
-import { StyledInputField } from "./style"
+import { StyleError, StyledInputField } from "./style"
 
 type InputFieldProps = {
     width?: number | undefined,
+    message?: string | undefined,
 } & InputHTMLAttributes<HTMLInputElement>
 
-const InputField = ( {width, ...rest}: InputFieldProps) => {
-    return(
-        <StyledInputField $width={width} {...rest}>
-        </StyledInputField>
+const InputField = ({ width, message, ...rest }: InputFieldProps) => {
+    return (
+        <div>
+            <StyledInputField $width={width} {...rest} />
+            { message && <StyleError>{message}</StyleError>}
+        </div>
     )
 }
 

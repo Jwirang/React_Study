@@ -1,4 +1,3 @@
-import { AxiosError } from "axios";
 import { useState } from "react";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
@@ -6,11 +5,13 @@ import { fetchCreateUser } from "../../api/fatBrainApi";
 import Alert from "../Alert";
 import Button from "../Button";
 import InputField from "../InputField";
-import { StyleText, StyledForm } from "./style";
+import { StyleError, StyledForm } from "./style";
 
 const JoinForm = () => {
   const navigate = useNavigate();
-  const [errorMessgae, setErrorMessage] = useState('');
+  const [userErrorMessage, setUserErrorMessage] = useState("")
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState("")
+  const [confirmpasswordErrorMessage, setConfirmpasswordErrorMessage] = useState("")
   const [joinFrom, setJoinFrom] = useState({
     username: "",
     password: "",
@@ -35,8 +36,11 @@ const JoinForm = () => {
         navigate('/login')
     },
     onError: (error: any) => {
-        if ((error as AxiosError)?.response) {
-            setErrorMessage(error.response.data.message);
+        if (error.response.data.username) {
+            setUserErrorMessage(error.response.data.username);
+        }
+        else if (error.response.data.password) {
+            setPasswordErrorMessage(error.response.data.password);
         }
     },
 })
@@ -46,6 +50,12 @@ const handleSubmit = (event: { preventDefault: () => void; }) => {
     if (username === "" || password === "" || joinFrom.confirmPassword === "" || nickname === "") {
         setShowAlert(true);
         return;
+    } 
+    if (password !== joinFrom.confirmPassword) {
+        setConfirmpasswordErrorMessage("입력하신 비밀번호와 다릅니다.")
+        return;
+    } else {
+        setConfirmpasswordErrorMessage("");
     }
     mutation.mutate({username, password, nickname});
 }
@@ -57,16 +67,18 @@ const handleSubmit = (event: { preventDefault: () => void; }) => {
         type="text"
         name="username"
         placeholder="아이디"
-        value={joinFrom.username}
+        value={username}
         onChange={handleChange}
+        message={userErrorMessage}
       ></InputField>
       <InputField
         width={300}
         type="password"
         name="password"
         placeholder="비밀번호"
-        value={joinFrom.password}
+        value={password}
         onChange={handleChange}
+        message={passwordErrorMessage}
       ></InputField>
       <InputField
         width={300}
@@ -75,16 +87,16 @@ const handleSubmit = (event: { preventDefault: () => void; }) => {
         placeholder="비밀번호확인"
         value={joinFrom.confirmPassword}
         onChange={handleChange}
+        message={confirmpasswordErrorMessage}
       ></InputField>
       <InputField
         width={300}
         type="nickname"
         name="nickname"
         placeholder="닉네임"
-        value={joinFrom.nickname}
+        value={nickname}
         onChange={handleChange}
       ></InputField>
-      <StyleText>{errorMessgae}</StyleText>
       <Button width={300} onClick={handleSubmit}>
         회원가입
       </Button>

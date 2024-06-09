@@ -12,8 +12,15 @@ const StyledForm = styled.form`
 const Stylea = styled.a `
     font-size: 12px;
 `
-const StyleText = styled.text`
+const StyleError = styled.p`
     font-size: 10px;
     color: red;
+    align-self: start;
 `
-export { StyledForm, Stylea, StyleText}
+const ExtendedStyledForm = styled(StyledForm)`
+    /* 추가적인 스타일을 여기에 작성하세요 */
+    background-color: lightblue;
+    border: 2px solid blue;
+    border-radius: 8px;
+`;
+export { StyledForm, Stylea, StyleError}

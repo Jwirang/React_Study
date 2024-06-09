@@ -8,29 +8,29 @@ import { useState } from "react";
 import Alert from "../../components/Alert";
 
 const Post = () => {
-  const { id } = useParams();
+  const { id, isError} = useParams();
   const navigate = useNavigate()
   const [showAlert, setShowAlert] = useState(false);
-  const { data: findFeed, isError, isLoading} = useQuery({
+  const { data: findFeed} = useQuery({
     queryKey: ['findFeed', {id}],
     queryFn: () => fetchFindFeed(Number(id)),
   })
 
-  if (isLoading) {
-    return <StyledContainer>로딩.</StyledContainer>;
-  }
+  // if (isLoading) {
+  //   return <StyledContainer>로딩.</StyledContainer>;
+  // }
 
   if (isError) {
     return <StyledContainer>존재하지 않는 게시물 번호입니다.</StyledContainer>;
   }
 
-  const mutation = useMutation((id: number) => fetchFeedDelete(id), {
+  const mutation = useMutation((id: Number) => fetchFeedDelete(Number(id)), {
     onSuccess: () => {
       setShowAlert(true)
       navigate('/');
     },
     onError: (error) => {
-      console.error("삭제 중 오류가 발생했습니다:", error);
+      //console.error("삭제 중 오류가 발생했습니다:", error);
       alert("삭제 중 오류가 발생했습니다.");
     }
   });
@@ -48,7 +48,7 @@ const Post = () => {
           <Button onClick={() => navigate(`/update/${id}`)}>
             수정하기
           </Button>
-          <Button onClick={feedDelete}>
+          <Button>
             삭제하기
           </Button>
         </ButtonGroup>
