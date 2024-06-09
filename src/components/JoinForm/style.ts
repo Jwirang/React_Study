@@ -12,5 +12,8 @@ const StyledForm = styled.form`
 const Stylea = styled.a `
     font-size: 12px;
 `
-
-export { StyledForm, Stylea}
+const StyleText = styled.text`
+    font-size: 10px;
+    color: red;
+`
+export { StyledForm, Stylea, StyleText}

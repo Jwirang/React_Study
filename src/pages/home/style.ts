@@ -120,4 +120,8 @@ const HoverText = styled.div`
   font-size: 16px;
 `;
 
-export { StyledContainer, StyledPostListContainer, StyledButton, StyledPost, Card, CardTitle, CardBody, HoverContent, HoverImage, HoverText };
+const StyleP = styled.p`
+  text-align: center;
+`
+
+export { StyledContainer, StyledPostListContainer, StyledButton, StyledPost, Card, CardTitle, CardBody, HoverContent, HoverImage, HoverText, StyleP };

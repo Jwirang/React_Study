@@ -1,13 +1,16 @@
-import { useQuery } from "react-query";
+/* eslint-disable react-hooks/rules-of-hooks */
+import { useMutation, useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
-import { fetchFindFeed } from "../../api/fatBrainApi";
+import { fetchFeedDelete, fetchFindFeed } from "../../api/fatBrainApi";
 import Button from "../../components/Button";
 import { ButtonGroup, PostBody, PostCard, PostTitle, StyledContainer } from "./style";
+import { useState } from "react";
+import Alert from "../../components/Alert";
 
 const Post = () => {
   const { id } = useParams();
   const navigate = useNavigate()
-
+  const [showAlert, setShowAlert] = useState(false);
   const { data: findFeed, isError, isLoading} = useQuery({
     queryKey: ['findFeed', {id}],
     queryFn: () => fetchFindFeed(Number(id)),
@@ -21,13 +24,19 @@ const Post = () => {
     return <StyledContainer>존재하지 않는 게시물 번호입니다.</StyledContainer>;
   }
 
-  const DeletePost = () => {
-    const confirmed = window.confirm(`${findFeed?.title} 글을 정말 삭제하시겠습니까?`);
-    if (confirmed) {
-      // 삭제 로직 추가
-      alert("삭제되었습니다.");
+  const mutation = useMutation((id: number) => fetchFeedDelete(id), {
+    onSuccess: () => {
+      setShowAlert(true)
       navigate('/');
+    },
+    onError: (error) => {
+      console.error("삭제 중 오류가 발생했습니다:", error);
+      alert("삭제 중 오류가 발생했습니다.");
     }
+  });
+
+  const feedDelete = () => {
+    mutation.mutate(Number(id))
   };
 
   return (
@@ -39,10 +48,15 @@ const Post = () => {
           <Button onClick={() => navigate(`/update/${id}`)}>
             수정하기
           </Button>
-          <Button onClick={DeletePost}>
+          <Button onClick={feedDelete}>
             삭제하기
           </Button>
         </ButtonGroup>
+        {showAlert && (
+        <Alert
+        message="삭제 되었습니다."
+        onClose={() => setShowAlert(false)} title={""}/>
+      )}
       </PostCard>
     </StyledContainer>
   );

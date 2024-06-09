@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, Children, ReactNode } from "react"
+import { ButtonHTMLAttributes, ReactNode } from "react"
 import { StyledButton } from "./style"
 
 type ButtonProps = {

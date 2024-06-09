@@ -12,7 +12,7 @@ const Main = () => {
     queryKey: ['me'],
     queryFn: fetchMe,
   })
-  
+
   if (isError) {
     navigate('/login')
   }

@@ -13,5 +13,9 @@ const StyledForm = styled.form`
 const Stylea = styled(Link) `
     font-size: 12px;
 `
+const StyleText = styled.text`
+    font-size: 10px;
+    color: red;
+`
 
-export { StyledForm, Stylea}
+export { StyledForm, Stylea, StyleText}

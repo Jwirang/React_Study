@@ -1,26 +1,34 @@
-import { useNavigate } from "react-router-dom"
-import { StyledPostItem, StyledContainer} from "./style"
+import { useNavigate } from "react-router-dom";
+import { StyledPostItem, StyledContainer, StyleP } from "./style";
 
 type PostItemProps = {
-  id: number
-  title: string
-}
+  id: number;
+  title: string;
+  createdAt: Date;
+};
 
-const PostItem = ({ id, title }: PostItemProps) => {
+const PostItem = ({ id, title, createdAt }: PostItemProps) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/post/${id}`)
-  }
+    navigate(`/post/${id}`);
+  };
+
+  const date = new Date(createdAt);
+  const formattedDate = new Intl.DateTimeFormat("ko-KR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }).format(date);
 
   return (
     <StyledContainer>
-    <StyledPostItem onClick={handleClick}>
-      {title}
-    </StyledPostItem>
-
+      <StyledPostItem onClick={handleClick}>
+        {title}
+        <StyleP>{formattedDate}</StyleP>
+      </StyledPostItem>
     </StyledContainer>
-  )
-}
+  );
+};
 
-export default PostItem
+export default PostItem;

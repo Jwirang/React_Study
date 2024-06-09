@@ -22,4 +22,7 @@ const StyledPostItem = styled.div`
   }
 `
 
-export { StyledPostItem, StyledContainer}
+const StyleP = styled.p`
+  text-align: right;
+`
+export { StyledPostItem, StyledContainer, StyleP}

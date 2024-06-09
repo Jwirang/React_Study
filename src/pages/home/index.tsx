@@ -1,7 +1,7 @@
 import { useRecoilValue } from "recoil";
 import { useNavigate } from "react-router-dom";
 import { postListState } from "../../stores";
-import { StyledContainer, StyledPostListContainer, StyledButton, Card, CardTitle, CardBody, HoverContent, HoverImage, HoverText } from "./style";
+import { StyledContainer, StyledPostListContainer, StyledButton, Card, CardTitle, CardBody, HoverContent, HoverImage, HoverText, StyleP } from "./style";
 import PostItem from "../../components/PostItem";
 import icon from '../../assets/icon.png';
 import { useQuery } from "react-query";
@@ -44,9 +44,11 @@ const Home = () => {
           </HoverContent>
         </Card>
         <StyledPostListContainer>
-          {feedList?.content.map(({ id, title }) => (
-            <PostItem key={id} id={id} title={title} />
-          ))}
+        {
+          feedList?.content.length ? (
+          feedList.content.map(({ id, title, createdAt }) => (
+          <PostItem key={id} id={id} title={title} createdAt= {createdAt} />
+        ))) : ( <StyleP>작성된 글이 없습니다.</StyleP>)}
         </StyledPostListContainer>
         <StyledButton onClick={handleClick}>+</StyledButton>
       </StyledContainer>
