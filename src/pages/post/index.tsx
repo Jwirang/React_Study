@@ -48,7 +48,7 @@ const Post = () => {
           <Button onClick={() => navigate(`/update/${id}`)}>
             수정하기
           </Button>
-          <Button>
+          <Button onClick={feedDelete}>
             삭제하기
           </Button>
         </ButtonGroup>
