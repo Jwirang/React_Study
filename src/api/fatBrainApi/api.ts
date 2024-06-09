@@ -1,5 +1,5 @@
 import fatBrainClient from "./client"
-import { CreateUserRequest, FeedResponse, IssueTokenRequest, Page, TokenRespons, UserRespons } from "./types"
+import { CreateFeed, CreateUserRequest, FeedResponse, IssueTokenRequest, Page, TokenRespons, UserRespons } from "./types"
 
 export const fetchCreateUser = async (data: CreateUserRequest): Promise<UserRespons> => {
     try{
@@ -33,6 +33,24 @@ export const fetchFeeds = async(page: number, size: number): Promise<Page<FeedRe
         const response = await fatBrainClient.get(`/v1/users/me/feeds?page=${page}&size=${size}`)
         return response.data
     } catch (error: unknown){
+        throw error
+    }
+}
+
+export const fetchCreateFeed = async (data: CreateFeed): Promise<FeedResponse> => {
+    try {
+        const response = await fatBrainClient.post('/v1/feeds', data)
+        return response.data
+    } catch (error: unknown) {
+        throw error
+    }
+}
+
+export const fetchFindFeed = async (id: number): Promise<FeedResponse> => {
+    try {
+        const response = await fatBrainClient.get(`/v1/feeds/${id}`)
+        return response.data
+    } catch (error: unknown) {
         throw error
     }
 }

@@ -1,26 +1,30 @@
+import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { postListState } from "../../stores";
-import { StyledContainer, StyledButton, PostCard, PostTitle, PostBody, ButtonGroup } from "./style";
+import { fetchFindFeed } from "../../api/fatBrainApi";
 import Button from "../../components/Button";
+import { ButtonGroup, PostBody, PostCard, PostTitle, StyledContainer } from "./style";
 
 const Post = () => {
   const { id } = useParams();
-  const postList = useRecoilValue(postListState);
-  const post = postList.find((post) => post.id === id);
-  const navigate = useNavigate();
-  const [mypostList, setMyPostList] = useRecoilState(postListState);
-  const index = mypostList.findIndex((listItem) => listItem === post);
+  const navigate = useNavigate()
 
-  if (!post) {
+  const { data: findFeed, isError, isLoading} = useQuery({
+    queryKey: ['findFeed', {id}],
+    queryFn: () => fetchFindFeed(Number(id)),
+  })
+
+  if (isLoading) {
+    return <StyledContainer>로딩.</StyledContainer>;
+  }
+
+  if (isError) {
     return <StyledContainer>존재하지 않는 게시물 번호입니다.</StyledContainer>;
   }
 
   const DeletePost = () => {
-    const confirmed = window.confirm(`${post.title} 글을 정말 삭제하시겠습니까?`);
+    const confirmed = window.confirm(`${findFeed?.title} 글을 정말 삭제하시겠습니까?`);
     if (confirmed) {
-      const newList = removeItemAtIndex(mypostList, index);
-      setMyPostList(newList);
+      // 삭제 로직 추가
       alert("삭제되었습니다.");
       navigate('/');
     }
@@ -29,10 +33,10 @@ const Post = () => {
   return (
     <StyledContainer>
       <PostCard>
-        <PostTitle>{post?.title}</PostTitle>
-        <PostBody>{post?.body}</PostBody>
+        <PostTitle>{findFeed?.title}</PostTitle>
+        <PostBody>{findFeed?.content}</PostBody>
         <ButtonGroup>
-          <Button onClick={() => navigate(`/update/${post.id}`)}>
+          <Button onClick={() => navigate(`/update/${id}`)}>
             수정하기
           </Button>
           <Button onClick={DeletePost}>
@@ -43,9 +47,5 @@ const Post = () => {
     </StyledContainer>
   );
 };
-
-function removeItemAtIndex<T>(arr: T[], index: number) {
-  return [...arr.slice(0, index), ...arr.slice(index + 1)];
-}
 
 export default Post;

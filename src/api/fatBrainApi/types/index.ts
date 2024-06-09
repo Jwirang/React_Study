@@ -43,3 +43,8 @@ export type Page<T> = {
     number: number
     empty: boolean
 }
+
+export type CreateFeed = {
+    title: string
+    content: string
+}

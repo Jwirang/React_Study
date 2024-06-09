@@ -1,53 +1,51 @@
-import { useState, useEffect } from "react";
-import { useSetRecoilState, useRecoilValue } from "recoil";
-import { v4 as uuidv4 } from "uuid";
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { StyledContainer, FormContainer, StyledTextArea, FormTitle, PlaceholderImage, Instructions } from "./style";
-import { postListState } from "../../stores";
+import { fetchCreateFeed } from "../../api/fatBrainApi";
 import Button from "../../components/Button";
 import InputField from "../../components/InputField";
+import { FormContainer, FormTitle, Instructions, PlaceholderImage, StyledContainer, StyledTextArea } from "./style";
 
 const CreateOrUpdate = () => {
     const { id } = useParams();
     const [title, setTitle] = useState('');
-    const [body, setBody] = useState('');
-    const setPostList = useSetRecoilState(postListState);
-    const postList = useRecoilValue(postListState);
+    const [content, setcontent] = useState('');
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (id) {
-            const postToUpdate = postList.find(post => post.id === id);
-            if (postToUpdate) {
-                setTitle(postToUpdate.title);
-                setBody(postToUpdate.body);
-            }
-        }
-    }, [id, postList]);
+    // useEffect(() => {
+    //     if (id) {
+    //         const postToUpdate = postList.find(post => post.id === id);
+    //         if (postToUpdate) {
+    //             setTitle(postToUpdate.title);
+    //             setBody(postToUpdate.body);
+    //         }
+    //     }
+    // }, [id, postList]);
 
-    const onClick = () => {
-        if (!title || !body) {
+    const onClick = async() => {
+        if (!title || !content) {
             alert("제목과 내용을 모두 입력해주세요.");
             return;
         }
         
-        if (id) {
-            setPostList((oldPostList) =>
-                oldPostList.map(post =>
-                    post.id === id ? { ...post, title, body } : post
-                )
-            );
-        } else {
-            const newId = uuidv4();
-            setPostList((oldPostList) => [...oldPostList,
-                {
-                    id: newId,
-                    title: title,
-                    body: body
-                },
-            ]);
-        }
+        // if (id) {
+        //     setPostList((oldPostList) =>
+        //         oldPostList.map(post =>
+        //             post.id === id ? { ...post, title, body } : post
+        //         )
+        //     );
+        // } else {
+        //     const newId = uuidv4();
+        //     setPostList((oldPostList) => [...oldPostList,
+        //         {
+        //             id: newId,
+        //             title: title,
+        //             body: body
+        //         },
+        //     ]);
+        // }
 
+        
+        const respons = await fetchCreateFeed({ title, content });
         navigate('/');
     };
 
@@ -68,8 +66,8 @@ const CreateOrUpdate = () => {
                 />
                 <StyledTextArea 
                     placeholder="내용" 
-                    value={body} 
-                    onChange={(event) => setBody(event.target.value)}
+                    value={content} 
+                    onChange={(event) => setcontent(event.target.value)}
                 />
                 <Button onClick={onClick}>
                     {id ? "수정하기" : "추가하기"}
