@@ -29,7 +29,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
+    "predeploy": "yarn run build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
@@ -57,5 +57,5 @@
     "@types/uuid": "^9.0.8"
   },
 
-  "homepage": "https://Jwirang.github.io/React_Study/"
+  "homepage": "https://Jwirang.github.io/React_Study"
 }

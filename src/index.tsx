@@ -14,7 +14,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <QueryClientProvider client={quertClient}>
   <RecoilRoot>
-    <BrowserRouter>
+    <BrowserRouter basename="/React_Study">
       <App />
     </BrowserRouter>
   </RecoilRoot>

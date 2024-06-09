@@ -2,7 +2,7 @@ import axios from "axios"
 import Cookies from "js-cookie";
 
 const fatBrainClient = axios.create({
-    baseURL: 'http://192.168.0.2',
+    baseURL: 'https://verduck.com',
     withCredentials: true,
 })
 

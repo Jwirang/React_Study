@@ -1,10 +1,10 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Main from './layouts/main';
+import CreateOrUpdate from './pages/create';
 import Home from './pages/home';
 import Login from './pages/login';
 import Post from './pages/post';
-import CreateOrUpdate from './pages/create';
 
 function App() {
   return (
