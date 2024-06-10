@@ -57,7 +57,7 @@ const Home = () => {
             </> ) : (
              <>
             <HoverImage src={icon} alt="예시 이미지" />
-            <HoverText>{count.count}개의 글을 작성하셨네요!</HoverText>
+            <HoverText>{count.count}개의 지식을 냠냠했어요!</HoverText>
             </> )}
           </Card>
         </div>

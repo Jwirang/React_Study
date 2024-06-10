@@ -1,14 +1,14 @@
+import { AxiosError } from "axios";
 import Cookies from "js-cookie";
 import { useState } from "react";
+import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { fetchIssueToken } from "../../api/fatBrainApi";
 import fatBrainClient from "../../api/fatBrainApi/client";
+import Alert from "../Alert";
 import Button from "../Button";
 import InputField from "../InputField";
-import { StyleText, Stylea, StyledForm } from "./style";
-import { useMutation } from "react-query";
-import Alert from "../Alert";
-import { AxiosError } from "axios";
+import { Stylea, StyledForm } from "./style";
 
 const LoginForm = () => {
   const navigate = useNavigate();

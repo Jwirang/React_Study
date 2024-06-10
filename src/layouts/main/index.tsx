@@ -4,7 +4,8 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { fetchMe } from "../../api/fatBrainApi";
 import fatBrainClient from "../../api/fatBrainApi/client";
 import fatbrain from '../../assets/fatbrainImage.png';
-import { LogoContainer, LogoImage, StyledH1, StyledHeaderContainer, StyledLink } from "./style";
+import { ButtonContainer, LogoContainer, LogoImage, StyledH1, StyledHeaderContainer, StyledLink } from "./style";
+import Button from "../../components/Button";
 
 const Main = () => {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ const Main = () => {
               {me?.nickname ?? me?.username}님의 지식 냠냠 목록🍚
             </StyledLink>
           </StyledH1>
-          <button onClick={logOut}>로그아웃</button>
+          <Button onClick={logOut} font={13} width={80}>로그아웃</Button>
         </StyledHeaderContainer>
       </header>
       <Outlet />

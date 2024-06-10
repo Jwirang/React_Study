@@ -12,6 +12,7 @@ const JoinForm = () => {
   const [userErrorMessage, setUserErrorMessage] = useState("")
   const [passwordErrorMessage, setPasswordErrorMessage] = useState("")
   const [confirmpasswordErrorMessage, setConfirmpasswordErrorMessage] = useState("")
+  const [nicknameError, setNicknameError] = useState('');
   const [joinFrom, setJoinFrom] = useState({
     username: "",
     password: "",
@@ -19,6 +20,7 @@ const JoinForm = () => {
     nickname: "",
   });
   const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertmessage] = useState('');
 
   const handleChange = (event: { target: { name: any; value: any; }; }) => {
     const { name, value } = event.target;
@@ -32,8 +34,8 @@ const JoinForm = () => {
   
   const mutation = useMutation(fetchCreateUser, {
     onSuccess: () => {
-        // 회원가입 성공 모달창
-        navigate('/login')
+        setAlertmessage('회원가입 성공!')
+        setShowAlert(true);
     },
     onError: (error: any) => {
         if (error.response.data.username) {
@@ -50,8 +52,10 @@ const handleSubmit = (event: { preventDefault: () => void; }) => {
     setConfirmpasswordErrorMessage("");
     setUserErrorMessage("");
     setPasswordErrorMessage("");
-    
+    setNicknameError("");
+
     if (username === "" || password === "" || joinFrom.confirmPassword === "" || nickname === "") {
+        setAlertmessage('모든 항목을 입력해주세요.')
         setShowAlert(true);
         return;
     } 
@@ -100,14 +104,20 @@ const handleSubmit = (event: { preventDefault: () => void; }) => {
         placeholder="닉네임"
         value={nickname}
         onChange={handleChange}
+        message={nicknameError}
       ></InputField>
       <Button width={300} onClick={handleSubmit}>
         회원가입
       </Button>
       {showAlert && (
         <Alert
-        message="모든 항목을 입력해 주세요."
-        onClose={() => setShowAlert(false)} title={""}/>
+        message={alertMessage}
+        onClose={() => {
+          if (alertMessage === '회원가입 성공!') {
+            navigate('/login')
+          }
+          setShowAlert(false)
+        }} title={""}/>
       )}
     </StyledForm>
   );

@@ -27,7 +27,6 @@ const Post = () => {
   const mutation = useMutation((id: Number) => fetchFeedDelete(Number(id)), {
     onSuccess: () => {
       setShowAlert(true)
-      navigate('/');
     },
     onError: (error) => {
       //console.error("삭제 중 오류가 발생했습니다:", error);
@@ -55,7 +54,10 @@ const Post = () => {
         {showAlert && (
         <Alert
         message="삭제 되었습니다."
-        onClose={() => setShowAlert(false)} title={""}/>
+        onClose={() => {
+          navigate('/');
+          setShowAlert(false)
+        }} title={""}/>
       )}
       </PostCard>
     </StyledContainer>

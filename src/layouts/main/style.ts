@@ -76,4 +76,12 @@ const LogoImage = styled.img`
   }
 `;
 
-export { StyledH1, StyledLink, StyledHeaderContainer, LogoContainer, LogoImage };
+const ButtonContainer = styled.div `
+  position: fixed;
+  right: 56px;
+  bottom: 16px;
+  width: 46px;
+  height: 650px;
+`
+
+export { StyledH1, StyledLink, StyledHeaderContainer, LogoContainer, LogoImage, ButtonContainer };
