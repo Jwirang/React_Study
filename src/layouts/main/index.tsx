@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import { fetchMe } from "../../api/fatBrainApi";
+import { fetchGetCount, fetchMe } from "../../api/fatBrainApi";
 import fatbrain from '../../assets/fatbrainImage.png';
 import { LogoContainer, LogoImage, StyledH1, StyledHeaderContainer, StyledLink } from "./style";
 import Cookies from "js-cookie";

@@ -20,7 +20,7 @@ fatBrainClient.interceptors.response.use(
   
           const { tokenType, accessToken } = response.data;
 
-          console.log(accessToken)
+          //console.log(accessToken)
   
           fatBrainClient.defaults.headers.common['Authorization'] = `${tokenType} ${accessToken}`;
           originalRequest.headers['Authorization'] = `${tokenType} ${accessToken}`;

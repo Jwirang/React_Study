@@ -79,8 +79,8 @@ const LoginForm = () => {
         placeholder="비밀번호"
         value={loginForm.password}
         onChange={eventHandeler}
+        message={errorMessgae}
       />
-      <StyleText>{errorMessgae}</StyleText>
       <Button width={300} onClick={login}>
         로그인
       </Button>

@@ -72,3 +72,12 @@ export const fetchFeedUpdate = async (id: number, data: CreateFeed): Promise<Fee
         throw error
     }
 } 
+
+export const fetchGetCount = async () => {
+    try {
+        const response = await fatBrainClient.get('/v1/users/me/feeds/today/count')
+        return response.data
+    } catch (error: unknown) {
+        throw error
+    }
+} 

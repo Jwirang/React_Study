@@ -5,7 +5,7 @@ import { fetchCreateUser } from "../../api/fatBrainApi";
 import Alert from "../Alert";
 import Button from "../Button";
 import InputField from "../InputField";
-import { StyleError, StyledForm } from "./style";
+import { StyledForm } from "./style";
 
 const JoinForm = () => {
   const navigate = useNavigate();

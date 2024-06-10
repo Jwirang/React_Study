@@ -4,12 +4,13 @@ import { fetchCreateFeed, fetchFeedUpdate, fetchFindFeed } from "../../api/fatBr
 import Button from "../../components/Button";
 import InputField from "../../components/InputField";
 import { FormContainer, FormTitle, Instructions, PlaceholderImage, StyledContainer, StyledTextArea } from "./style";
-import { useQuery } from "react-query";
+import Alert from "../../components/Alert";
 
 const CreateOrUpdate = () => {
-    const { id } = useParams();
+    const { id, isError } = useParams();
     const [title, setTitle] = useState('');
     const [content, setcontent] = useState('');
+    const [showAlert, setShowAlert] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -25,7 +26,7 @@ const CreateOrUpdate = () => {
 
     const onClick = async() => {
         if (!title || !content) {
-            alert("제목과 내용을 모두 입력해주세요.");
+            setShowAlert(true)
             return;
         }
 
@@ -36,12 +37,9 @@ const CreateOrUpdate = () => {
         }
         navigate('/');
     };
-
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const { data: findFeed} = id ? useQuery({
-        queryKey: ['findFeed', {id}],
-        queryFn: () => fetchFindFeed(Number(id)),
-    }) : { data: null }; 
+    if (isError) {
+        return <StyledContainer>존재하지 않는 게시물 번호입니다.</StyledContainer>;
+      }
 
     return (
         <StyledContainer>
@@ -66,6 +64,11 @@ const CreateOrUpdate = () => {
                 <Button onClick={onClick}>
                     {id ? "수정하기" : "추가하기"}
                 </Button>
+                {showAlert && (
+                    <Alert
+                    message="제목과 내용을 모두 입력해주세요."
+                    onClose={() => setShowAlert(false)} title={""}/>
+                )}
             </FormContainer>
         </StyledContainer>
     );

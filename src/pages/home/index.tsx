@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { fetchFeeds, fetchMe } from "../../api/fatBrainApi";
+import { fetchFeeds, fetchGetCount, fetchMe } from "../../api/fatBrainApi";
 import icon from '../../assets/icon.png';
 import Card from "../../components/Card";
 import PostItem from "../../components/PostItem";
@@ -40,6 +40,11 @@ const Home = () => {
     queryFn: () => fetchFeeds(page, size),
   })
 
+  const { data: count,} = useQuery({
+    queryKey: ['count'],
+    queryFn: fetchGetCount,
+  })
+  
   return (
     <main>
       <StyledContainer>
@@ -52,7 +57,7 @@ const Home = () => {
             </> ) : (
              <>
             <HoverImage src={icon} alt="예시 이미지" />
-            <HoverText>개의 글을 작성하셨네요!</HoverText>
+            <HoverText>{count.count}개의 글을 작성하셨네요!</HoverText>
             </> )}
           </Card>
         </div>

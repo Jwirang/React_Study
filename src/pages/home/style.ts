@@ -89,7 +89,8 @@ const HoverImage = styled.img`
 `;
 
 const HoverText = styled.div`
-  font-size: 16px;
+  font-size: 18px;
+  color: #666;
 `;
 
 const StyleP = styled.p`
