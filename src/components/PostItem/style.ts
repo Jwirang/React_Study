@@ -26,6 +26,9 @@ const StyledTitle = styled.h2`
   font-weight: bold;
   color: #333;
   margin: 0 0 10px 0;
+  white-space: nowrap; /* 텍스트를 한 줄로 표시 */
+  overflow: hidden; /* 넘치는 텍스트를 숨김 */
+  text-overflow: ellipsis; /* 넘치는 텍스트를 말줄임표로 처리
 `
 
 const StyleP = styled.p`
