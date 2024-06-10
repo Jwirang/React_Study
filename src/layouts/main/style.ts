@@ -38,7 +38,6 @@ const StyledLink = styled(Link)`
 
   &:hover {
     color: #3498db; /* 호버 시 텍스트 색상 변경 */
-    //background-color: #bdc3c7; /* 호버 시 배경색 변경 */
   }
 `;
 

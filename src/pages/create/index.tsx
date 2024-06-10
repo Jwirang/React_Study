@@ -47,7 +47,7 @@ const CreateOrUpdate = () => {
                 <PlaceholderImage src="https://via.placeholder.com/100" alt="Placeholder" />
                 <FormTitle>{id ? "게시물 수정하기" : "새 게시물 작성하기"}</FormTitle>
                 <Instructions>
-                    {id ? "수정할 게시물의 제목과 내용을 입력하세요.": "새 게시물의 제목과 내용을 입력하세요."}
+                    {id ? "게시물을 수정해보세요.": "오늘 공부한 내용을 기록해보세요."}
                 </Instructions>
                 <InputField
                     width={300}

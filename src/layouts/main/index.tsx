@@ -1,10 +1,10 @@
+import Cookies from "js-cookie";
 import { useQuery } from "react-query";
-import { Link, Outlet, useNavigate } from "react-router-dom";
-import { fetchGetCount, fetchMe } from "../../api/fatBrainApi";
+import { Outlet, useNavigate } from "react-router-dom";
+import { fetchMe } from "../../api/fatBrainApi";
+import fatBrainClient from "../../api/fatBrainApi/client";
 import fatbrain from '../../assets/fatbrainImage.png';
 import { LogoContainer, LogoImage, StyledH1, StyledHeaderContainer, StyledLink } from "./style";
-import Cookies from "js-cookie";
-import fatBrainClient from "../../api/fatBrainApi/client";
 
 const Main = () => {
   const navigate = useNavigate();

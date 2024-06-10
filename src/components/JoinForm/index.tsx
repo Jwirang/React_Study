@@ -47,6 +47,10 @@ const JoinForm = () => {
 
 const handleSubmit = (event: { preventDefault: () => void; }) => {
     event?.preventDefault()
+    setConfirmpasswordErrorMessage("");
+    setUserErrorMessage("");
+    setPasswordErrorMessage("");
+    
     if (username === "" || password === "" || joinFrom.confirmPassword === "" || nickname === "") {
         setShowAlert(true);
         return;
