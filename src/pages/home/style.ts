@@ -91,10 +91,17 @@ const HoverImage = styled.img`
 const HoverText = styled.div`
   font-size: 18px;
   color: #666;
+  margin-top: 40px;
 `;
 
 const StyleP = styled.p`
   text-align: center;
 `
 
-export { StyledContainer, StyledPostListContainer, StyledButton, StyledPost, Card, CardTitle, CardBody, HoverImage, HoverText, StyleP };
+const BrainText = styled.p`
+  margin-top: -50px;
+  text-align: center;
+  margin-left: -150px;
+`;
+
+export { BrainText, StyledContainer, StyledPostListContainer, StyledButton, StyledPost, Card, CardTitle, CardBody, HoverImage, HoverText, StyleP };

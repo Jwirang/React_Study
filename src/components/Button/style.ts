@@ -10,6 +10,7 @@ const StyledButton = styled.button<{$width?: Number, $padding?: Number, $font?: 
     ${props => props.$font ? `font-size: ${props.$font}px;` : 'font-size: 16px;'}
     cursor: pointer;
     transition: background-color 0.3s;
+    float: right;
 
     &:hover {
         background-color: #3498DB;

@@ -47,7 +47,7 @@ const StyledHeaderContainer = styled.div`
   display: flex;
   align-items: center;
   padding: 10px 20px;
-
+  justify-content: space-between;
   @media (max-width: 768px) {
     padding: 8px 16px;
   }

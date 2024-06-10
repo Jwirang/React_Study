@@ -1,16 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { fetchFeeds, fetchGetCount, fetchMe } from "../../api/fatBrainApi";
 import icon from '../../assets/icon.png';
 import Card from "../../components/Card";
 import PostItem from "../../components/PostItem";
-import { CardBody, CardTitle, HoverImage, HoverText, StyleP, StyledButton, StyledContainer, StyledPostListContainer } from "./style";
+import { BrainText, CardBody, CardTitle, HoverImage, HoverText, StyleP, StyledButton, StyledContainer, StyledPostListContainer } from "./style";
 
 
 const Home = () => {
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
+  const [message, setmessage] = useState('');
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -44,6 +45,20 @@ const Home = () => {
     queryKey: ['count'],
     queryFn: fetchGetCount,
   })
+
+  useEffect(() => {
+    if (count) {
+      if (count.count === 0) {
+        setmessage('너무 배고파요');
+      } else if (count.count >= 1 && count.count < 4) {
+        setmessage('아직 배고파요');
+      } else if (count.count >= 4 && count.count < 6) {
+        setmessage('이제 배불러요');
+      } else if (count.count >= 6){
+        setmessage('과식했어요..');
+      }
+    }
+  }, [count]);
   
   return (
     <main>
@@ -57,6 +72,7 @@ const Home = () => {
             </> ) : (
              <>
             <HoverImage src={icon} alt="예시 이미지" />
+            <BrainText>{message}</BrainText>
             <HoverText>{count.count}개의 지식을 냠냠했어요!</HoverText>
             </> )}
           </Card>

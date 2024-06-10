@@ -8,7 +8,7 @@ const StyledContainer = styled.div`
 const StyledPostItem = styled.div`
   padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: #fff;
   transition: background-color 0.3s ease, transform 0.3s ease;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
